@@ -37,3 +37,17 @@ Building our own poisoned Docker container:
 ```
 
 ## Part 2: Exploit-Check.sh
+
+In the next exercise, we will use **[Exploit-Check](https://github.com/ndouglas-cloudsmith/exploit-check)** to understand the severity of vulnerabilities found in our container images.
+```
+wget https://raw.githubusercontent.com/ndouglas-cloudsmith/exploit-check/refs/heads/main/exploit-check.sh
+chmod +x exploit-check.sh
+```
+Update the scanner databases before using it:
+```
+./exploit-check.sh update
+```
+To query a specific CVE, run the below command:
+```
+./exploit-check.sh query CVE-2021-44228
+```
