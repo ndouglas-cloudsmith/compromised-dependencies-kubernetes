@@ -1,4 +1,4 @@
-### Hunting compromised software dependencies inside Kubernetes workloads
+## Hunting compromised software dependencies inside Kubernetes workloads
 This was created for workshop no.1 of PlatformCon: <br/>
 https://platformcon.com/sessions/hunting-compromised-software-dependencies-inside-kubernetes-workloads
 
