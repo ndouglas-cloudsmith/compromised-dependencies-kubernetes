@@ -53,7 +53,7 @@ To query a specific CVE, run the below command:
 ```
 
 
-## PlatformCon Workshops
+## PlatformCon 2026 Workshops
 
 1. **[Hunting compromised software dependencies inside Kubernetes workloads](https://github.com/ndouglas-cloudsmith/compromised-dependencies-kubernetes/tree/main)**
 2. [AI agents & platform engineering: Efficiency boost or new source of trouble?](https://github.com/ndouglas-cloudsmith/AI-agents-platform-engineering)
