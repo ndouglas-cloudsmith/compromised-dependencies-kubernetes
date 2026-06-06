@@ -1,8 +1,8 @@
-#### Hunting compromised software dependencies inside Kubernetes workloads
+### Hunting compromised software dependencies inside Kubernetes workloads
 This was created for workshop no.1 of PlatformCon: <br/>
 https://platformcon.com/sessions/hunting-compromised-software-dependencies-inside-kubernetes-workloads
 
-##### Learning Outcomes
+### Learning Outcomes
 This practical, hands-on session covers Kubernetes incident response. Moving beyond theory, it uses a live workshop to hunt threats in real time.
 
 **The workflow:**
