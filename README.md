@@ -12,10 +12,16 @@ This was created for **Workshop #1** of PlatformCon: <br/>
 
 ## Part 1: Poisoning a Kubernetes workload
 
+Simple Docker Image pull and scan:
+```
+docker pull ollama/ollama:latest
+```
+
 ```
 osv-scanner scan image python:latest
 ```
 
+For a full vulnerability report on the above image, use the below feature flags:
 ```
 osv-scanner scan image python:latest --all-vulns
 ```
@@ -23,3 +29,11 @@ osv-scanner scan image python:latest --all-vulns
 ```
 osv-scanner scan image --format vertical python:latest
 ```
+
+Building our own poisoned Docker container:
+
+```
+......
+```
+
+## Part 2: Exploit-Check.sh
