@@ -12,3 +12,14 @@ This was created for **Workshop #1** of PlatformCon: <br/>
 
 ## Part 1: Poisoning a Kubernetes workload
 
+```
+osv-scanner scan image python:latest
+```
+
+```
+osv-scanner scan image python:latest --all-vulns
+```
+
+```
+osv-scanner scan image --format vertical python:latest
+```
