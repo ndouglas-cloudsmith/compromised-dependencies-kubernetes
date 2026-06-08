@@ -145,9 +145,6 @@ In the next exercise, we will use **[Exploit-Check](https://github.com/ndouglas-
 ```
 wget https://raw.githubusercontent.com/ndouglas-cloudsmith/exploit-check/refs/heads/main/exploit-check.sh
 chmod +x exploit-check.sh
-```
-Update the scanner databases before using it:
-```
 ./exploit-check.sh update
 ```
 To query a specific CVE, run the below command:
@@ -183,6 +180,51 @@ osv-scanner scan image docker.cloudsmith.io/acme-corporation/acme-repo-one/pytho
 ```
 
 <img width="1505" height="436" alt="Screenshot 2026-06-08 at 12 56 40" src="https://github.com/user-attachments/assets/b8dfd079-48b1-46c4-89ff-a4ce0dc19ca1" />
+
+#### Comparing CVSS scores with EPSS percentiles and check for Known Exploits
+
+| CVE ID | CVSS Severity | CVSS Score | EPSS Percentage | KEV | ExploitDB | OSV |
+| --- |:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+| `CVE-2021-45786` | **CRITICAL** | **9.8**  | 0.41%      | ❌ | ❌ | ❌ |
+| `CVE-2024-0646`  | HIGH         |   7.0    | 0.02%      | ❌ | ❌ | ✅ |
+| `CVE-2024-25062` | HIGH         |   7.5    | 0.11%      | ❌ | ❌ | ✅ |
+| `CVE-2021-44228` | **CRITICAL** | **10.0** | **94.47%** | ✅ | ✅ | ✅ |
+| `CVE-2024-38285` | ❌           |    ❌    | 0.08%      | ❌ | ❌ | ❌ |
+| `CVE-2017-0144`  | HIGH         |   8.8    | **94.42%** | ✅ | ✅ | ❌ |
+| `CVE-2024-20024` | MEDIUM       |   6.0    | 0.02%      | ❌ | ❌ | ❌ |
+| `CVE-2014-0160`  | HIGH         |   7.5    | **94.45%** | ✅ | ✅ | ✅ |
+| `CVE-2024-9482`  | MEDIUM       |   5.1    | 0.03%      | ❌ | ❌ | ❌ |
+| `CVE-2017-5638`  | **CRITICAL** | **9.8**  | **94.27%** | ✅ | ✅ | N/A|
+| `CVE-2024-28085` | LOW          |   3.3    | 9.83%      | ❌ | ❌ | ✅ |
+| `CVE-2024-50302` | MEDIUM       |   5.5    | 0.30%      | ✅ | ❌ | ✅ |
+| `CVE-2025-47273` | HIGH         | **8.8**  | 0.16%      | ❌ | ❌ | ✅ |
+| `CVE-2024-6345`  | ❌           |    ❌    | 4.36%      | ❌ | ❌ | ✅ |
+| `CVE-2016-5195`  | HIGH         |   7.0    | **94.18%** | ✅ | ✅ | ✅ |
+| `CVE-2022-48477` | MEDIUM       |   4.1    | **0.00%**  | ❌ | ❌ | ❌ |
+
+
+In the case of ```CVE-2016-5195```, it has a relatively **low CVSS** score, considering the likelihood of exploitation (**EPSS**) is very high:
+```
+./exploit-check.sh query CVE-2016-5195 
+```
+
+<img width="1507" height="513" alt="Screenshot 2026-06-08 at 14 59 29" src="https://github.com/user-attachments/assets/037a5bf0-113d-48f4-ac8f-d753436bfe30" />
+
+## Part 3: ExploitPwned.sh
+
+In this final exercise, we will use **[ExploitPwned](https://github.com/ndouglas-cloudsmith/ExploitPwned)** to understand how hackers are weaponising exploit scripts against these known vulnerabilities:
+```
+wget https://raw.githubusercontent.com/ndouglas-cloudsmith/ExploitPwned/refs/heads/main/exploitPwned.sh
+chmod +x exploitPwned.sh
+./exploitPwned.sh update
+```
+
+Use the scanner to look-up the vulnerability - ```CVE-2016-5195```
+```
+./exploitPwned.sh CVE-2016-5195
+```
+
+<img width="1507" height="559" alt="Screenshot 2026-06-08 at 15 04 41" src="https://github.com/user-attachments/assets/bcc22101-555e-475e-853a-d3856d148054" />
 
 
 
