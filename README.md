@@ -37,6 +37,11 @@ wget https://raw.githubusercontent.com/ndouglas-cloudsmith/compromised-dependenc
 docker build -t production-app:v1 .
 ```
 
+Scan with OSV-Scanner
+```
+osv-scanner scan image production-app:v1 --all-vulns
+```
+
 List all local images:
 ```
 docker images
