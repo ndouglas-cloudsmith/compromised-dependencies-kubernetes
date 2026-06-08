@@ -14,7 +14,7 @@ This was created for **Workshop #1** of PlatformCon: <br/>
 
 Simple Docker Image pull and scan:
 ```
-docker pull ollama/ollama:latest
+docker pull python:latest
 ```
 
 ```
