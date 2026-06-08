@@ -30,10 +30,11 @@ osv-scanner scan image python:latest --all-vulns
 osv-scanner scan image --format vertical python:latest
 ```
 
-Building our own poisoned Docker container:
+Building our own poisoned Docker container. This ```Dockerfile``` generates harmless metadata strings that match the vulnerable versions you specified.
 
 ```
-......
+wget https://raw.githubusercontent.com/ndouglas-cloudsmith/compromised-dependencies-kubernetes/refs/heads/main/Dockerfile
+docker build -t production-app:v1 .
 ```
 
 ## Part 2: Exploit-Check.sh
