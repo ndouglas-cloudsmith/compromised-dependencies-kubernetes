@@ -37,6 +37,17 @@ wget https://raw.githubusercontent.com/ndouglas-cloudsmith/compromised-dependenc
 docker build -t production-app:v1 .
 ```
 
+List all local images:
+```
+docker images
+```
+
+Remove unwanted images:
+```
+docker rmi python:latest
+```
+
+
 ## Part 2: Exploit-Check.sh
 
 In the next exercise, we will use **[Exploit-Check](https://github.com/ndouglas-cloudsmith/exploit-check)** to understand the severity of vulnerabilities found in our container images.
