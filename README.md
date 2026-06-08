@@ -156,7 +156,7 @@ To query a specific CVE, run the below command:
 <img width="1509" height="1186" alt="Screenshot 2026-06-08 at 12 24 35" src="https://github.com/user-attachments/assets/8d69a22b-2456-4531-aed0-3c8382300969" />
 
 All malicious package reports are accessible directly in **[Github](https://github.com/ossf/malicious-packages/blob/main/osv/malicious/npm/grr-ui/MAL-2025-6.json)**. <br/>
-You can alternatively query the database via curl to see if a specific package name and version is flagged as malicious - ie: **[MAL-2025-48401](https://osv.dev/vulnerability/MAL-2025-48401)**:
+Query the database to see if a specific package ```name```/```version``` is malicious **[MAL-2025-48401](https://osv.dev/vulnerability/MAL-2025-48401)**:
 
 ```
 curl -s -d \
