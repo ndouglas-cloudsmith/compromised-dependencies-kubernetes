@@ -42,6 +42,9 @@ Scan with OSV-Scanner
 osv-scanner scan image production-app:v1 --all-vulns
 ```
 
+<img width="1416" height="493" alt="Screenshot 2026-06-08 at 12 20 09" src="https://github.com/user-attachments/assets/146c20c5-aba4-4128-9b93-eb2e37e3e863" />
+
+
 Tagging and pushing the docker image to Cloudsmith:
 ```
 docker tag production-app:v1 docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
@@ -123,6 +126,17 @@ Scan the public container image:
 osv-scanner scan image docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
 ```
 
+This will generate a HTML report and serve it to localhost:8000
+```
+osv-scanner scan image docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1 --serve
+```
+
+<img width="1149" height="257" alt="Screenshot 2026-06-08 at 12 16 30" src="https://github.com/user-attachments/assets/51f925f9-da3c-4a3c-a907-f42b7c4914ce" />
+
+<img width="1715" height="1268" alt="Screenshot 2026-06-08 at 12 18 12" src="https://github.com/user-attachments/assets/cc06bb32-07a6-40aa-89e9-ea613cc5a855" />
+
+
+
 ## Part 2: Exploit-Check.sh
 
 In the next exercise, we will use **[Exploit-Check](https://github.com/ndouglas-cloudsmith/exploit-check)** to understand the severity of vulnerabilities found in our container images.
@@ -136,8 +150,11 @@ Update the scanner databases before using it:
 ```
 To query a specific CVE, run the below command:
 ```
-./exploit-check.sh query CVE-2021-44228
+./exploit-check.sh query MAL-2026-2144 
 ```
+
+<img width="1509" height="1186" alt="Screenshot 2026-06-08 at 12 24 35" src="https://github.com/user-attachments/assets/8d69a22b-2456-4531-aed0-3c8382300969" />
+
 
 
 ## PlatformCon 2026 Workshops
