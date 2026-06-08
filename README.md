@@ -74,11 +74,54 @@ Remove unwanted images:
 docker rmi python:latest
 ```
 
+```
+kubectl apply -f - <<EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: production-app-deployment
+  labels:
+    app: production-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: production-app
+  template:
+    metadata:
+      labels:
+        app: production-app
+    spec:
+      containers:
+      - name: production-app-container
+        image: docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+EOF
+```
+
 List all images in Kubernetes pods:
 ```
 kubectl get pods -A -o custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,IMAGES:.spec.containers[*].image'
 ```
 
+Scan the public container image:
+```
+osv-scanner scan image docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
+```
 
 ## Part 2: Exploit-Check.sh
 
