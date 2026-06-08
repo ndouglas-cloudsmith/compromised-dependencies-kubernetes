@@ -77,6 +77,8 @@ Remove unwanted images:
 docker rmi python:latest
 ```
 
+#### Deployment a malicious Kubernetes workload
+
 ```
 kubectl apply -f - <<EOF
 apiVersion: apps/v1
@@ -164,6 +166,25 @@ curl -s -d \
     "package": {"name": "supplychain-firewall-benchmark-hello", "ecosystem": "npm"}}' \
   "https://api.osv.dev/v1/query" | jq .
 ```
+
+#### Exploitable vulnerabilities
+
+This will generate a HTML report and serve it to localhost:8000
+```
+osv-scanner scan image docker.cloudsmith.io/acme-corporation/acme-repo-one/python:latest --serve
+```
+
+<img width="1267" height="1174" alt="Screenshot 2026-06-08 at 12 51 00" src="https://github.com/user-attachments/assets/b7311806-a65d-40dc-87f4-3499d6c7ea31" />
+
+<img width="1362" height="1180" alt="Screenshot 2026-06-08 at 12 54 46" src="https://github.com/user-attachments/assets/9d5d9b6b-898c-40e7-b76a-329ec83e107e" />
+
+```
+./exploit-check.sh query CVE-2026-8376 
+```
+
+<img width="1505" height="436" alt="Screenshot 2026-06-08 at 12 56 40" src="https://github.com/user-attachments/assets/b8dfd079-48b1-46c4-89ff-a4ce0dc19ca1" />
+
+
 
 ## PlatformCon 2026 Workshops
 
