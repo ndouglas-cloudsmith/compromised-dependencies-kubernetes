@@ -227,6 +227,16 @@ Use the scanner to look-up the vulnerability - ```CVE-2016-5195```
 <img width="1507" height="559" alt="Screenshot 2026-06-08 at 15 04 41" src="https://github.com/user-attachments/assets/bcc22101-555e-475e-853a-d3856d148054" />
 
 
+```
+./exploitPwned.sh CVE-2016-5195 --details
+```
+
+<img width="1149" height="1174" alt="Screenshot 2026-06-08 at 15 29 17" src="https://github.com/user-attachments/assets/af715ba3-d5a3-4fab-9afe-abec21e57451" />
+
+
+**[EDB-ID:40838](https://www.exploit-db.com/exploits/40838)** is correctly mapped to the CVE ID within the Exploit Database for the **Dirty COW** vulnerability. <br/>
+Saying that, not all people in the security community publish those exploits ethically to the ExploitDB. In some cases, they publish their **[POCs on Github](https://github.com/firefart/dirtycow)**.
+
 
 ## PlatformCon 2026 Workshops
 
