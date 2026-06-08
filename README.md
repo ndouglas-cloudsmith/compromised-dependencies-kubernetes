@@ -48,6 +48,22 @@ docker tag production-app:v1 docker.cloudsmith.io/acme-corporation/acme-repo-one
 docker push docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
 ```
 
+#### Miscellaneous Commands
+```
+cloudsmith list packages acme-corporation/acme-repo-one -F pretty_json | jq --arg name "production-app" '.data[] | select(.display_name == $name)'
+```
+
+```
+cloudsmith list packages acme-corporation/acme-repo-one -q "format:docker"
+```
+
+```
+cloudsmith quarantine add acme-corporation/acme-repo-one/production-app-jrn9  -k "$CLOUDSMITH_API_KEY"
+```
+```
+cloudsmith quarantine remove acme-corporation/acme-repo-one/production-app-jrn9  -k "$CLOUDSMITH_API_KEY"
+```
+
 List all local images:
 ```
 docker images
@@ -56,6 +72,11 @@ docker images
 Remove unwanted images:
 ```
 docker rmi python:latest
+```
+
+List all images in Kubernetes pods:
+```
+kubectl get pods -A -o custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name,IMAGES:.spec.containers[*].image'
 ```
 
 
