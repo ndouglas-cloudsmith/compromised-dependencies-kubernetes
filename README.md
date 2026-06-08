@@ -42,6 +42,12 @@ Scan with OSV-Scanner
 osv-scanner scan image production-app:v1 --all-vulns
 ```
 
+Tagging and pushing the docker image to Cloudsmith:
+```
+docker tag production-app:v1 docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
+docker push docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
+```
+
 List all local images:
 ```
 docker images
