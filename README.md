@@ -237,6 +237,8 @@ Use the scanner to look-up the vulnerability - ```CVE-2016-5195```
 **[EDB-ID:40838](https://www.exploit-db.com/exploits/40838)** is correctly mapped to the CVE ID within the Exploit Database for the **Dirty COW** vulnerability. <br/>
 Saying that, not all people in the security community publish those exploits ethically to the ExploitDB. In some cases, they publish their **[POCs on Github](https://github.com/firefart/dirtycow)**.
 
+<br/><br/>
+
 #### Ingress-NGINX Exploits
 To prioritise the safety and security of the ecosystem, Kubernetes SIG Network and the Security Response Committee are announcing the upcoming [retirement of Ingress NGINX](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/). Best-effort maintenance will continue until March 2026. Afterward, there will be no further releases, no bugfixes, and no updates to resolve any security vulnerabilities that may be discovered. **Existing deployments of Ingress NGINX will continue to function and installation artifacts will remain available**.
 ```
