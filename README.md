@@ -247,7 +247,7 @@ To prioritise the safety and security of the ecosystem, Kubernetes SIG Network a
 ./exploitPwned.sh CVE-2025-1098 --details
 ./exploitPwned.sh CVE-2025-1097 --details
 ```
-This is an especially strange case where there's no ```KEV``` entry for ```CVE-2025-1974``` considering how actively it's present and being exploited in the wild: <br/>
+This is an especially strange case where there's no ```KEV``` entry for ```CVE-2025-1974``` considering how actively it's present & exploited: <br/>
 https://kubernetes.io/blog/2025/03/24/ingress-nginx-cve-2025-1974/
 <br/>
 
