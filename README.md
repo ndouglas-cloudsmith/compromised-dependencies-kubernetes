@@ -237,6 +237,33 @@ Use the scanner to look-up the vulnerability - ```CVE-2016-5195```
 **[EDB-ID:40838](https://www.exploit-db.com/exploits/40838)** is correctly mapped to the CVE ID within the Exploit Database for the **Dirty COW** vulnerability. <br/>
 Saying that, not all people in the security community publish those exploits ethically to the ExploitDB. In some cases, they publish their **[POCs on Github](https://github.com/firefart/dirtycow)**.
 
+#### Ingress-NGINX Exploits
+To prioritise the safety and security of the ecosystem, Kubernetes SIG Network and the Security Response Committee are announcing the upcoming [retirement of Ingress NGINX](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/). Best-effort maintenance will continue until March 2026. Afterward, there will be no further releases, no bugfixes, and no updates to resolve any security vulnerabilities that may be discovered. **Existing deployments of Ingress NGINX will continue to function and installation artifacts will remain available**.
+```
+./exploitPwned.sh CVE-2025-24514 --details
+./exploitPwned.sh CVE-2025-1974 --details
+./exploitPwned.sh CVE-2025-1098 --details
+./exploitPwned.sh CVE-2025-1097 --details
+```
+
+#### Other Test Scenarios
+CISA and its partners, through the Joint Cyber Defense Collaborative, responded to active, widespread exploitation of a critical remote code execution (RCE) vulnerability (CVE-2021-44228) in the [Apache Log4j](https://www.cisa.gov/news-events/news/apache-log4j-vulnerability-guidance) software library, versions 2.0-beta9 to 2.14.1, known as "Log4Shell." Log4j is very broadly used in a variety of consumer and enterprise services, websites, and apps (as well as in operational technology products) to log security and performance information. An unauthenticated remote actor could exploit this vulnerability to take control of an affected system.
+```
+./exploitPwned.sh CVE-2021-44228 --details
+```
+[Apache Struts](https://www.trendmicro.com/en_us/research/17/c/cve-2017-5638-apache-struts-vulnerability-remote-code-execution.html) is a free and open-source framework used to build Java web applications. We looked into past several Remote Code Execution (RCE) vulnerabilities reported in Apache Struts, and observed that in most of them, attackers have used Object Graph Navigation Language (OGNL) expressions. The use of OGNL makes it easy to execute arbitrary code remotely because Apache Struts uses it for most of its processes.
+```
+./exploitPwned.sh CVE-2017-5638 --details
+```
+[EternalBlue](https://en.wikipedia.org/wiki/EternalBlue) is a computer exploit software developed by the US National Security Agency ([NSA](https://www.wired.com/story/eternalblue-leaked-nsa-spy-tool-hacked-world/)) based on a zero-day vulnerability in Microsoft Windows SMB Remote Code Execution. In 2017, a computer worm in the form of ransomware, nicknamed "WannaCry", used the EternalBlue exploit to attack computers using Windows that had not received the latest system updates removing the vulnerability.
+```
+./exploitPwned.sh CVE-2017-0144 --details
+```
+[OpenSSL](https://www.cisa.gov/news-events/alerts/2014/04/08/openssl-heartbleed-vulnerability-cve-2014-0160) contained a flaw in its implementation of the TLS/DTLS heartbeat functionality, known as "Heartbleed". This flaw allows an attacker to retrieve private memory of an application that uses the vulnerable OpenSSL library in chunks of 64k at a time. Note that an attacker can repeatedly leverage the vulnerability to retrieve as many 64k chunks of memory as are necessary to retrieve the intended secrets.
+```
+./exploitPwned.sh CVE-2014-0160 --details
+```
+
 
 ## PlatformCon 2026 Workshops
 
