@@ -235,7 +235,8 @@ Use the scanner to look-up the vulnerability - ```CVE-2016-5195```
 
 
 **[EDB-ID:40838](https://www.exploit-db.com/exploits/40838)** is correctly mapped to the CVE ID within the Exploit Database for the **Dirty COW** vulnerability. <br/>
-Saying that, not all people in the security community publish those exploits ethically to the ExploitDB. In some cases, they publish their **[POCs on Github](https://github.com/firefart/dirtycow)**.
+Saying that, not all people in the security community publish those exploits ethically to the ExploitDB. <br/>
+In some cases, they publish their **[POCs on Github](https://github.com/firefart/dirtycow)**.
 
 <br/>
 
