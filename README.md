@@ -237,7 +237,7 @@ Use the scanner to look-up the vulnerability - ```CVE-2016-5195```
 **[EDB-ID:40838](https://www.exploit-db.com/exploits/40838)** is correctly mapped to the CVE ID within the Exploit Database for the **Dirty COW** vulnerability. <br/>
 Saying that, not all people in the security community publish those exploits ethically to the ExploitDB. In some cases, they publish their **[POCs on Github](https://github.com/firefart/dirtycow)**.
 
-<br/><br/>
+<br/>
 
 #### Ingress-NGINX Exploits
 To prioritise the safety and security of the ecosystem, Kubernetes SIG Network and the Security Response Committee are announcing the upcoming [retirement of Ingress NGINX](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/). Best-effort maintenance will continue until March 2026. Afterward, there will be no further releases, no bugfixes, and no updates to resolve any security vulnerabilities that may be discovered. **Existing deployments of Ingress NGINX will continue to function and installation artifacts will remain available**.
@@ -247,6 +247,9 @@ To prioritise the safety and security of the ecosystem, Kubernetes SIG Network a
 ./exploitPwned.sh CVE-2025-1098 --details
 ./exploitPwned.sh CVE-2025-1097 --details
 ```
+This is an especially strange case where there's no ```KEV``` entry for ```CVE-2025-1974``` considering how actively it's present and being exploited in the wild: <br/>
+https://kubernetes.io/blog/2025/03/24/ingress-nginx-cve-2025-1974/
+<br/>
 
 #### Other Test Scenarios
 CISA and its partners, through the Joint Cyber Defense Collaborative, responded to active, widespread exploitation of a critical remote code execution (RCE) vulnerability (CVE-2021-44228) in the [Apache Log4j](https://www.cisa.gov/news-events/news/apache-log4j-vulnerability-guidance) software library, versions 2.0-beta9 to 2.14.1, known as "Log4Shell." Log4j is very broadly used in a variety of consumer and enterprise services, websites, and apps (as well as in operational technology products) to log security and performance information. An unauthenticated remote actor could exploit this vulnerability to take control of an affected system.
