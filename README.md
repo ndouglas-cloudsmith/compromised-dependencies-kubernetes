@@ -61,7 +61,9 @@ pip3 install git+https://github.com/nullracodes/slopgate --break-system-packages
 <img width="1505" height="305" alt="Screenshot 2026-06-14 at 23 07 46" src="https://github.com/user-attachments/assets/43739bbf-40f6-46a2-be05-a926927cb3f3" />
 
 
+Download a Python ```requirements.txt``` file and scan it using ```slopgate```
 ```
+wget https://raw.githubusercontent.com/ndouglas-cloudsmith/compromised-dependencies-kubernetes/refs/heads/main/requirements.txt
 slopgate scan requirements.txt
 ```
 
