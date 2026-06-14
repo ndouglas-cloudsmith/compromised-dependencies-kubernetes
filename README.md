@@ -69,6 +69,13 @@ slopgate scan requirements.txt
 
 <img width="1505" height="561" alt="Screenshot 2026-06-14 at 23 15 05" src="https://github.com/user-attachments/assets/8a7ec7a5-c834-47fc-9549-7aadebccb5ad" />
 
+```
+slopgate scan requirements.txt --format sarif --output slopgate.sarif
+cat slopgate.sarif
+```
+
+<img width="1505" height="904" alt="Screenshot 2026-06-14 at 23 23 25" src="https://github.com/user-attachments/assets/6b31d31e-58f4-4e4d-9a03-16e76b06f355" />
+
 
 #### Miscellaneous Commands
 ```
