@@ -67,6 +67,9 @@ wget https://raw.githubusercontent.com/ndouglas-cloudsmith/compromised-dependenc
 slopgate scan requirements.txt
 ```
 
+<img width="1505" height="561" alt="Screenshot 2026-06-14 at 23 15 05" src="https://github.com/user-attachments/assets/8a7ec7a5-c834-47fc-9549-7aadebccb5ad" />
+
+
 #### Miscellaneous Commands
 ```
 cloudsmith list packages acme-corporation/acme-repo-one -F pretty_json | jq --arg name "production-app" '.data[] | select(.display_name == $name)'
