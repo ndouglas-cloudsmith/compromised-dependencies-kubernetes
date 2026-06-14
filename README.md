@@ -51,6 +51,20 @@ docker tag production-app:v1 docker.cloudsmith.io/acme-corporation/acme-repo-one
 docker push docker.cloudsmith.io/acme-corporation/acme-repo-one/production-app:v1
 ```
 
+### Slopgate
+
+**[Slopgate](https://github.com/nullracodes/slopgate)** is a CI gate designed to protect against slopsquatting and hallucinated dependencies for ```Python```, ```npm```, and ```Go```.
+```
+pip3 install git+https://github.com/nullracodes/slopgate --break-system-packages
+```
+
+<img width="1505" height="305" alt="Screenshot 2026-06-14 at 23 07 46" src="https://github.com/user-attachments/assets/43739bbf-40f6-46a2-be05-a926927cb3f3" />
+
+
+```
+slopgate scan requirements.txt
+```
+
 #### Miscellaneous Commands
 ```
 cloudsmith list packages acme-corporation/acme-repo-one -F pretty_json | jq --arg name "production-app" '.data[] | select(.display_name == $name)'
