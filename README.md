@@ -300,15 +300,37 @@ CISA and its partners, through the Joint Cyber Defense Collaborative, responded 
 
 To trigger malicious package flags in an ```osv-scanner``` lookup during a container scan, you don't actually need to install or run the malicious code. **OSV-Scanner** checks manifest files like ```package.json``` or lockfiles like ```package-lock.json``` to identify vulnerabilities. The cleanest and safest way to achieve this is to bake a dummy ```package.json``` file into a generic image. This flags the vulnerabilities perfectly without exposing your system to the actual malicious dependencies.
 ```
-cat << 'EOF' > package.json
+cat << 'EOF' > package-lock.json
 {
   "name": "dummy-malware-test",
   "version": "1.0.0",
-  "description": "Dummy package to trigger OSV scanner alerts",
-  "dependencies": {
-    "mastra": "1.13.1",
-    "mountly": "0.2.2",
-    "xorma-js": "1.0.2"
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "dummy-malware-test",
+      "version": "1.0.0",
+      "dependencies": {
+        "mastra": "1.13.1",
+        "mountly": "0.2.2",
+        "xorma-js": "1.0.2"
+      }
+    },
+    "node_modules/mastra": {
+      "version": "1.13.1",
+      "resolved": "https://registry.npmjs.org/mastra/-/mastra-1.13.1.tgz",
+      "integrity": "sha512-dummyhash"
+    },
+    "node_modules/mountly": {
+      "version": "0.2.2",
+      "resolved": "https://registry.npmjs.org/mountly/-/mountly-0.2.2.tgz",
+      "integrity": "sha512-dummyhash"
+    },
+    "node_modules/xorma-js": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/xorma-js/-/xorma-js-1.0.2.tgz",
+      "integrity": "sha512-dummyhash"
+    }
   }
 }
 EOF
@@ -319,24 +341,28 @@ This ```Dockerfile``` uses a generic lightweight Alpine image, creates a directo
 cat << 'EOF' > Dockerfile
 FROM alpine:3.20
 
-# Create an app directory
 WORKDIR /usr/src/app
 
-# Copy the dummy package.json into the container
-COPY package.json .
+# Copy the lockfile into the container filesystem
+COPY package-lock.json .
 
-# Default command
 CMD ["/bin/sh"]
 EOF
 ```
 
 Build the image:
 ```
-docker build -t osv-malware-test:latest .
+docker build -t boring-image:latest .
 ```
+
+Check that it was successfulled built:
+```
+docker images | grep boring-image
+```
+
 Run the scanner against your newly built local Docker image:
 ```
-osv-scanner --docker osv-malware-test:latest
+osv-scanner scan image boring-image:latest
 ```
 Because OSV-Scanner parses the filesystem of the container layers looking for known package manifests, it will locate ```/usr/src/app/package.json```, identify the pinned ecosystem versions, and correctly flag:
 - ```MAL-2026-5965```
