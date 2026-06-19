@@ -300,6 +300,7 @@ CISA and its partners, through the Joint Cyber Defense Collaborative, responded 
 
 To trigger malicious package flags in an ```osv-scanner``` lookup during a container scan, you don't actually need to install or run the malicious code. **OSV-Scanner** checks manifest files like ```package.json``` or lockfiles like ```package-lock.json``` to identify vulnerabilities. The cleanest and safest way to achieve this is to bake a dummy ```package.json``` file into a generic image. This flags the vulnerabilities perfectly without exposing your system to the actual malicious dependencies.
 ```
+cat << 'EOF' > package.json
 {
   "name": "dummy-malware-test",
   "version": "1.0.0",
@@ -310,10 +311,12 @@ To trigger malicious package flags in an ```osv-scanner``` lookup during a conta
     "xorma-js": "1.0.2"
   }
 }
+EOF
 ```
 
 This ```Dockerfile``` uses a generic lightweight Alpine image, creates a directory, and copies the ```package.json``` file into it.
 ```
+cat << 'EOF' > Dockerfile
 FROM alpine:3.20
 
 # Create an app directory
@@ -322,8 +325,9 @@ WORKDIR /usr/src/app
 # Copy the dummy package.json into the container
 COPY package.json .
 
-# Default command just to keep the container open if run interactively
+# Default command
 CMD ["/bin/sh"]
+EOF
 ```
 
 Build the image:
