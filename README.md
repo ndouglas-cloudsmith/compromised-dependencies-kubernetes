@@ -296,6 +296,49 @@ CISA and its partners, through the Joint Cyber Defense Collaborative, responded 
 ./exploitPwned.sh CVE-2014-0160 --details
 ```
 
+## Part 5: Creating a poisoined docker workload
+
+To trigger malicious package flags in an ```osv-scanner``` lookup during a container scan, you don't actually need to install or run the malicious code. **OSV-Scanner** checks manifest files like ```package.json``` or lockfiles like ```package-lock.json``` to identify vulnerabilities. The cleanest and safest way to achieve this is to bake a dummy ```package.json``` file into a generic image. This flags the vulnerabilities perfectly without exposing your system to the actual malicious dependencies.
+```
+{
+  "name": "dummy-malware-test",
+  "version": "1.0.0",
+  "description": "Dummy package to trigger OSV scanner alerts",
+  "dependencies": {
+    "mastra": "1.13.1",
+    "mountly": "0.2.2",
+    "xorma-js": "1.0.2"
+  }
+}
+```
+
+This ```Dockerfile``` uses a generic lightweight Alpine image, creates a directory, and copies the ```package.json``` file into it.
+```
+FROM alpine:3.20
+
+# Create an app directory
+WORKDIR /usr/src/app
+
+# Copy the dummy package.json into the container
+COPY package.json .
+
+# Default command just to keep the container open if run interactively
+CMD ["/bin/sh"]
+```
+
+Build the image:
+```
+docker build -t osv-malware-test:latest .
+```
+Run the scanner against your newly built local Docker image:
+```
+osv-scanner --docker osv-malware-test:latest
+```
+Because OSV-Scanner parses the filesystem of the container layers looking for known package manifests, it will locate ```/usr/src/app/package.json```, identify the pinned ecosystem versions, and correctly flag:
+- ```MAL-2026-5965```
+- ```MAL-2026-5260```
+- ```MAL-2026-4734```
+
 
 ## PlatformCon 2026 Workshops
 
