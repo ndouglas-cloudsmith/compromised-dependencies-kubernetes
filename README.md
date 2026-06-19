@@ -343,8 +343,15 @@ FROM alpine:3.20
 
 WORKDIR /usr/src/app
 
-# Copy the lockfile into the container filesystem
-COPY package-lock.json .
+# Create dummy node_modules folders for each malicious package
+RUN mkdir -p node_modules/mastra \
+             node_modules/mountly \
+             node_modules/xorma-js
+
+# Populate each folder with a minimal package.json containing name and version
+RUN echo '{"name": "mastra", "version": "1.13.1"}' > node_modules/mastra/package.json
+RUN echo '{"name": "mountly", "version": "0.2.2"}' > node_modules/mountly/package.json
+RUN echo '{"name": "xorma-js", "version": "1.0.2"}' > node_modules/xorma-js/package.json
 
 CMD ["/bin/sh"]
 EOF
