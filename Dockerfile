@@ -1,17 +1,27 @@
-FROM alpine:latest
+# Grab the official Python base image from Docker Hub
+FROM python:3.12-slim
 
-# --- Python Mock Packages ---
-# Create the standard Python site-packages directory structure and inject metadata
-RUN mkdir -p /usr/local/lib/python3.11/site-packages/akobo-0.0.4.dist-info && \
-    printf 'Metadata-Version: 2.1\nName: akobo\nVersion: 0.0.4\n' > /usr/local/lib/python3.11/site-packages/akobo-0.0.4.dist-info/METADATA
-
-RUN mkdir -p /usr/local/lib/python3.11/site-packages/litellm-1.82.8.dist-info && \
-    printf 'Metadata-Version: 2.1\nName: litellm\nVersion: 1.82.8\n' > /usr/local/lib/python3.11/site-packages/litellm-1.82.8.dist-info/METADATA
-
-# --- Node.js/npm Mock Packages ---
-# Create an application directory with a package-lock.json
+# Set up your working directory
 WORKDIR /app
-RUN printf '{\n  "name": "scanner-test",\n  "version": "1.0.0",\n  "lockfileVersion": 2,\n  "requires": true,\n  "dependencies": {\n    "grr-ui": {\n      "version": "1.0.0"\n    }\n  }\n}\n' > /app/package-lock.json
 
-# Keep the container alive if run, or just default to a basic shell
-CMD ["/bin/sh"]
+# (Optional) Copy your actual application requirements and install them
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# --- SCAN TESTING LAYER ---
+# Dynamically locate site-packages and inject the dummy 'requestts' metadata
+RUN SITE_PACKAGES=$(python3 -c "import site; print(site.getsitepackages()[0])") && \
+    DIST_INFO_DIR="${SITE_PACKAGES}/requestts-71.71.72.dist-info" && \
+    mkdir -p "${DIST_INFO_DIR}" && \
+    echo "Metadata-Version: 2.1" > "${DIST_INFO_DIR}/METADATA" && \
+    echo "Name: requestts" >> "${DIST_INFO_DIR}/METADATA" && \
+    echo "Version: 71.71.72" >> "${DIST_INFO_DIR}/METADATA" && \
+    echo "pip" > "${DIST_INFO_DIR}/INSTALLER" && \
+    echo "requestts" > "${DIST_INFO_DIR}/top_level.txt"
+# --------------------------
+
+# Copy the rest of your application code
+COPY . .
+
+# Run your application
+CMD ["python", "app.py"]
